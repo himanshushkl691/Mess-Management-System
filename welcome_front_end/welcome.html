@@ -1,14 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Page Title </title>
+<style>
+  body{
+     background-image: url("rajpath2.jpeg");
+      background-size:1850px 1100px;
+
+  }
+   body {
+      background-color: blue;
+   }
+   div.relative{
+     position: relative;
+     margin-top:80px;
+     margin-bottom:60px;
+     margin-left: 780px;
+   }
+
+  div.rel{
+    position:relative;
+      margin-top:55px;
+      margin-bottom:60px;
+      margin-left: 860px;
+  }
+  div.pes{
+     position:relative;
+     margin-top:55px;
+     margin-bottom:60px;
+       margin-left: 760px;
+  }
+  .Button {
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 15px 25px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+   </style>
+   <title>Bootstrap Example</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
   <body>
+<div class="jumbotron" style="background:orange">
+<tr class = "table-primary">
 <h1 align="center">Welcome to NITC-Mess Management</h1>
-<h2 align="left">Administrator</h2>
-<button>Login Admin</button>
-<h2 align="left">User</h2>
-<button>Login User</button>
-<button>Register User</button>
+</tr>
+</div>
+<div class="relative">
+<img src="Nitc.jpeg" width="300" height="300">
+</div>
+<h1 align="center" style="color:pink;">Administrator</h2>
+<div class="rel">
+<button class = "Button">Login Admin </button>
+</div>
+<h1 align="center" style="color:pink;">User</h2>
+<div class="pes">
+<a href = "file:///home/shubham/Desktop/user.html">
+<button class = "Button">Login added User</button>
+<button class = "Button">Register New User</button>
+</a>
+</div>
 </body>
 </html>
