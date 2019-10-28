@@ -6,7 +6,7 @@ require_once "config.php";
 $mess_name = $password = $confirm_password = "";
 $mess_name_err = $password_err = $confirm_password_err = "";
 
-//processing from data when form is submitted
+//processing form data when form is submitted
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	/*Validate mess_name*/
 	$temp = trim($_POST["mess_name"]);

@@ -6,7 +6,7 @@ require_once "config.php";
 $roll_no = $password = $name = $hostel = $room_no = $confirm_password = "";
 $roll_no_err = $name_err = $hostel_err = $room_no_err = $password_err = $confirm_password_err = "";
 
-//processing from data when form is submitted
+//processing form data when form is submitted
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	/*Validate roll number*/
 	if(empty(trim($_POST["roll_no"]))){
