@@ -3,8 +3,8 @@
 require_once "config.php";
 
 //define variables and initialize with empty values
-$mess_name = $password = $confirm_password = "";
-$mess_name_err = $password_err = $confirm_password_err = "";
+$mess_name = $base = $password = $confirm_password = "";
+$mess_name_err = $base_err = $password_err = $confirm_password_err = "";
 
 //processing form data when form is submitted
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
@@ -41,6 +41,16 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 		mysqli_stmt_close($stmt);
 	}
 
+	/*Base price validation per day*/
+	$temp = trim($_POST["base"]);
+	if(empty($temp)){
+		$base_err = "Please enter base price for your mess.";
+	}else if(is_numeric($temp)){
+		$base = $temp;
+	}else{
+		$base_err = "Please enter a valid base price.";
+	}
+
 	/*Validate password*/
 	if(empty(trim($_POST["password"]))){
 		$password_err = "Please enter a password.";
@@ -63,12 +73,13 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	/*Check input errors before inserting in databse*/
 	if(empty($mess_name_err) && empty($password_err) && empty($confirm_password_err)){
 		/*Prepare an insert statement*/
-		$sql = "INSERT INTO MESS_ADMIN (mess_name,pass) VALUES (?, ?)";
+		$sql = "INSERT INTO MESS_ADMIN (mess_name,pass,base) VALUES (?, ?, ?)";
 		if($stmt = mysqli_prepare($link,$sql)){
 			/*Bind variables to the prepared statement as a parameter*/
-			mysqli_stmt_bind_param($stmt,"ss",$param_mess_name,$param_pass);
+			mysqli_stmt_bind_param($stmt,"ssd",$param_mess_name,$param_pass,$param_base);
 			$param_mess_name = $mess_name;
 			$param_pass = $password;
+			$param_base = $base;
 			/*Attempt to execute the prepared statement*/
 			if(mysqli_stmt_execute($stmt)){
 				/*Redirect to login page*/
@@ -104,6 +115,11 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                 <label>Mess Name</label>
                 <input type="text" name="mess_name" class="form-control" value="<?php echo $mess_name; ?>">
                 <span class="help-block"><?php echo $mess_name_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($base_err)) ? 'has-error' : ''; ?>">
+                <label>Base Price/Day</label>
+                <input type="number" step=0.01 name="base" class="form-control" value="<?php echo $base; ?>">
+                <span class="help-block"><?php echo $base_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>

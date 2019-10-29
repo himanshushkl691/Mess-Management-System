@@ -3,8 +3,8 @@
 require_once "config.php";
 
 //define variables and initialize with empty values
-$roll_no = $password = $name = $hostel = $room_no = $confirm_password = "";
-$roll_no_err = $name_err = $hostel_err = $room_no_err = $password_err = $confirm_password_err = "";
+$roll_no = $password = $name = $hostel = $room_no = $mess_name = $confirm_password = "";
+$roll_no_err = $name_err = $hostel_err = $room_no_err = $mess_name_err = $password_err = $confirm_password_err = "";
 
 //processing form data when form is submitted
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
@@ -38,6 +38,16 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 		}
 		/*Close statement*/
 		mysqli_stmt_close($stmt);
+	}
+
+	/*Validate mess name*/
+	$temp = trim($_POST["mess_name"]);
+	if(empty($temp)){
+		$mess_name_err = "Please enter a mess name.";
+	}else if(strcmp("A",$temp) == 0 || strcmp("B",$temp) == 0 || strcmp("C",$temp) == 0 || strcmp("D",$temp) == 0 || strcmp("E",$temp) == 0 || strcmp("F",$temp) == 0 || strcmp("G",$temp) == 0 || strcmp("IH",$temp) == 0 || strcmp("LH",$temp) == 0 || strcmp("MLH",$temp) == 0 || strcmp("MBH",$temp) == 0 || strcmp("PG1",$temp) == 0 || strcmp("PG2",$temp) == 0 || strcmp("MBA",$temp) == 0){
+		$mess_name = $temp;
+	}else{
+		$mess_name_err = "Invalid mess name.";
 	}
 
 	/*Validate hostel name*/
@@ -87,23 +97,38 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	}
 
 	/*Check input errors before inserting in databse*/
-	if(empty($roll_no_err) && empty($password_err) && empty($confirm_password_err) && empty($hostel_err) && empty($name_err) && empty($room_no_err)){
+	if(empty($mess_name_err) && empty($roll_no_err) && empty($password_err) && empty($confirm_password_err) && empty($hostel_err) && empty($name_err) && empty($room_no_err)){
 		/*Prepare an insert statement*/
-		$sql = "INSERT INTO STUDENT (roll_no,name,pass,hostel,room_no) VALUES (?, ?, ?, ?, ?)";
+		$sql = "INSERT INTO STUDENT (roll_no,name,pass,hostel,room_no,mess_name) VALUES (?, ?, ?, ?, ?, ?)";
 		if($stmt = mysqli_prepare($link,$sql)){
 			/*Bind variables to the prepared statement as a parameter*/
-			mysqli_stmt_bind_param($stmt,"sssss",$param_roll_no,$param_name,$param_pass,$param_hostel,$param_room_no);
+			mysqli_stmt_bind_param($stmt,"ssssss",$param_roll_no,$param_name,$param_pass,$param_hostel,$param_room_no,$param_mess_name);
 			$param_roll_no = $roll_no;
 			$param_name = $name;
 			$param_pass = $password;
 			$param_hostel = $hostel;
 			$param_room_no = $room_no;
+			$param_mess_name = $mess_name;
 			/*Attempt to execute the prepared statement*/
 			if(mysqli_stmt_execute($stmt)){
 				/*Redirect to login page*/
 				header("location: student_login.php");
 			}else{
-				echo "Something went wrong.";
+				$sql = "SELECT mess_name FROM MESS_ADMIN WHERE mess_name = ?";
+				if($stmt = mysqli_prepare($link,$sql)){
+					/*Bind variables to the prepared statement*/
+					mysqli_stmt_bind_param($stmt,"s",$param_mess_name);
+					$param_mess_name = $mess_name;
+					/*Attempt to execute the prepared statement*/
+					if(mysqli_stmt_execute($stmt)){
+						mysqli_stmt_store_result($stmt);
+						if(mysqli_stmt_num_rows($stmt) == 0){
+							$mess_name_err = "Mess does not exist.";
+						}
+					}else{
+						echo "Something went wrong.Try again later.";
+					}
+				}
 			}
 		}
 		/*Close statement*/
@@ -148,6 +173,11 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                 <label>Room Number</label>
                 <input type="text" name="room_no" class="form-control" value="<?php echo $room_no; ?>">
                 <span class="help-block"><?php echo $room_no_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($mess_name_err)) ? 'has-error' : ''; ?>">
+                <label>Mess Name</label>
+                <input type="text" name="mess_name" class="form-control" value="<?php echo $mess_name; ?>">
+                <span class="help-block"><?php echo $mess_name_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
