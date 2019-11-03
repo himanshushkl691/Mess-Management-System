@@ -3,7 +3,7 @@
 /*Database credentials for MySQL server user = 'root'*/
 define('DB_SERVER','localhost:3306');
 define('DB_USERNAME','root');
-define('DB_PASSWORD','qwerty123');
+define('DB_PASSWORD','');
 define('DB_NAME','MESS_MANAGEMENT');
 
 /*Attempt to connect to MySQL database*/
