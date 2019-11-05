@@ -3,9 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 30, 2019 at 07:53 PM
+-- Generation Time: Nov 05, 2019 at 08:26 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
+create database MESS_MANAGEMENT;
+use MESS_MANAGEMENT;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -29,14 +31,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `EXTRAS` (
+  `id` int(11) NOT NULL,
   `roll_no` char(9) NOT NULL,
   `mess_name` varchar(5) NOT NULL,
   `item_name` varchar(15) NOT NULL,
   `item_price` double NOT NULL,
   `item_qty` int(11) NOT NULL,
-  `total` double NOT NULL,
+  `total` double NOT NULL DEFAULT 0,
   `time_stamp` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `EXTRAS`
+--
+
+INSERT INTO `EXTRAS` (`id`, `roll_no`, `mess_name`, `item_name`, `item_price`, `item_qty`, `total`, `time_stamp`) VALUES
+(5, 'B170499cs', 'D', 's', 10, 3, 30, '2019-11-03 00:14:04');
 
 -- --------------------------------------------------------
 
@@ -47,8 +57,17 @@ CREATE TABLE `EXTRAS` (
 CREATE TABLE `FEEDBACK` (
   `roll_no` char(9) NOT NULL,
   `suggestion` varchar(1000) DEFAULT NULL,
-  `mess_name` varchar(5) NOT NULL
+  `mess_name` varchar(5) NOT NULL,
+  `time_stamp` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `FEEDBACK`
+--
+
+INSERT INTO `FEEDBACK` (`roll_no`, `suggestion`, `mess_name`, `time_stamp`) VALUES
+('B170936cs', 'tatti hai khana', 'G', '2019-11-03 01:19:24'),
+('B170703cs', 'daal k naam pe pani deta h', 'D', '2019-11-03 01:20:45');
 
 -- --------------------------------------------------------
 
@@ -61,6 +80,24 @@ CREATE TABLE `MESS_ADMIN` (
   `pass` varchar(30) NOT NULL,
   `base` double NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `MESS_ADMIN`
+--
+
+INSERT INTO `MESS_ADMIN` (`mess_name`, `pass`, `base`) VALUES
+('A', '123456', 50),
+('B', '123456', 50),
+('C', '123456', 50),
+('D', '123456', 50),
+('E', '123456', 50),
+('F', '123456', 50),
+('G', '123456', 50),
+('IH', '123456', 50),
+('LH', '123456', 50),
+('MBA', '123456', 50),
+('Mega', '123456', 50),
+('MLH', '123456', 50);
 
 -- --------------------------------------------------------
 
@@ -79,6 +116,15 @@ CREATE TABLE `STUDENT` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `STUDENT`
+--
+
+INSERT INTO `STUDENT` (`roll_no`, `name`, `pass`, `hostel`, `room_no`, `time_stamp`, `mess_name`) VALUES
+('B170499cs', 'bhand', '12345678', 'C', '121', '2019-11-03 00:14:04', 'D'),
+('B170703cs', 'shrey', '12345678', 'C', '148', '2019-11-03 00:14:04', 'D'),
+('B170936cs', 'sachin', '12345678', 'C', '235', '2019-11-03 00:14:04', 'G');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -86,6 +132,7 @@ CREATE TABLE `STUDENT` (
 -- Indexes for table `EXTRAS`
 --
 ALTER TABLE `EXTRAS`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `roll_no` (`roll_no`),
   ADD KEY `mess_name` (`mess_name`);
 
@@ -108,6 +155,16 @@ ALTER TABLE `MESS_ADMIN`
 ALTER TABLE `STUDENT`
   ADD PRIMARY KEY (`roll_no`),
   ADD KEY `mess_name` (`mess_name`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `EXTRAS`
+--
+ALTER TABLE `EXTRAS`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
