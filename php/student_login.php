@@ -1,23 +1,18 @@
 <?php
 /*Initialize the section*/
 session_start();
-
 /*Check if the user is already logged in, if yes then redirect him to welcome page*/
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 	header("location: student_welcome.php");
 	exit;
 }
-
 /*Include config file*/
 require_once "config.php";
-
 /*Define variables and initialize with empty value*/
 $roll_no = $password = "";
 $roll_no_err = $password_err = "";
-
 /*Processing form when form is submitted*/
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
-
 	/*Check if roll number is empty*/
 	$temp = trim($_POST["roll_no"]);
 	if(empty($temp)){
@@ -25,7 +20,6 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	}else{
 		$roll_no = $temp;
 	}
-
 	/*Check if password is empty*/
 	$temp = trim($_POST["password"]);
 	if(empty($temp)){
@@ -33,7 +27,6 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	}else{
 		$password = $temp;
 	}
-
 	/*Validate credentials from database*/
 	if(empty($roll_no_err) && empty($password_err)){
 		/*Prepare a select statement*/
@@ -42,7 +35,6 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 			/*Bind the variables to prepared statement*/
 			mysqli_stmt_bind_param($stmt,"s",$param_roll_no);
 			$param_roll_no = $roll_no;
-
 			/*Attempt to execute prepared statement*/
 			if(mysqli_stmt_execute($stmt)){
 				/*Store result*/
@@ -58,7 +50,6 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 							/*Store data in session variables*/
 							$_SESSION["loggedin"] = true;
 							$_SESSION["roll_no"] = $roll_no;
-
 							/*Redirect to welcome page*/
 							header("location: student_welcome.php");
 						}else{

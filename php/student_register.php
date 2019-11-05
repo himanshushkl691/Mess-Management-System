@@ -1,11 +1,9 @@
 <?php
 //include config file
 require_once "config.php";
-
 //define variables and initialize with empty values
 $roll_no = $password = $name = $hostel = $room_no = $mess_name = $confirm_password = "";
 $roll_no_err = $name_err = $hostel_err = $room_no_err = $mess_name_err = $password_err = $confirm_password_err = "";
-
 //processing form data when form is submitted
 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	/*Validate roll number*/
@@ -16,17 +14,14 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	}else{
 		//prepare a select statement
 		$sql = "SELECT * FROM STUDENT WHERE roll_no = ?";
-
 		if($stmt = mysqli_prepare($link,$sql)){
 			mysqli_stmt_bind_param($stmt,"s",$param_roll_no);
 			//set parameters
 			$param_roll_no = trim($_POST["roll_no"]);
-
 			//attempt to execute the prepared statement
 			if(mysqli_stmt_execute($stmt)){
 				/*store result*/
 				mysqli_stmt_store_result($stmt);
-
 				if(mysqli_stmt_num_rows($stmt) == 1){
 					$roll_no_err = "This roll number is already taken.";
 				}else{
@@ -39,7 +34,6 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 		/*Close statement*/
 		mysqli_stmt_close($stmt);
 	}
-
 	/*Validate mess name*/
 	$temp = trim($_POST["mess_name"]);
 	if(empty($temp)){
@@ -49,7 +43,6 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	}else{
 		$mess_name_err = "Invalid mess name.";
 	}
-
 	/*Validate hostel name*/
 	$temp = trim($_POST["hostel"]);
 	if(empty($temp)){
@@ -59,14 +52,12 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	}else{
 		$hostel_err = "Hostel does not exist.";
 	}
-
 	/*Validate name*/
 	if(empty(trim($_POST["name"]))){
 		$name_err = "Please fill name.";
 	}else{
 		$name = trim($_POST["name"]);
 	}
-
 	/*Validate room number*/
 	if(empty(trim($_POST["room_no"]))){
 		$room_no_err = "Please fill your room number.";
@@ -76,7 +67,6 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	else{
 		$room_no = trim($_POST["room_no"]);
 	}
-
 	/*Validate password*/
 	if(empty(trim($_POST["password"]))){
 		$password_err = "Please enter a password.";
@@ -85,7 +75,6 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 	}else{
 		$password = trim($_POST["password"]);
 	}
-
 	/*Validate confirm password*/
 	if(empty(trim($_POST["confirm_password"]))){
 		$confirm_password_err = "Please confirm password.";
@@ -95,7 +84,6 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 			$confirm_password_err = "Password did not match.";
 		}
 	}
-
 	/*Check input errors before inserting in databse*/
 	if(empty($mess_name_err) && empty($roll_no_err) && empty($password_err) && empty($confirm_password_err) && empty($hostel_err) && empty($name_err) && empty($room_no_err)){
 		/*Prepare an insert statement*/
