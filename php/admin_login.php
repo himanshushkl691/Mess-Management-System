@@ -4,7 +4,7 @@ session_start();
 
 /*Check if the user is already logged in, if yes then redirect him to welcome page*/
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-	header("location: admin_welcome.php");
+	header("location: ../welcome_front_end/welcome_admin.html");
 	exit;
 }
 
@@ -60,7 +60,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 							$_SESSION["mess_name"] = $mess_name;
 
 							/*Redirect to welcome page*/
-							header("location: admin_welcome.php");
+							header("location: ../welcome_front_end/welcome_admin.html");
 						}else{
 							$password_err = "The password you entered was not valid.";
 						}

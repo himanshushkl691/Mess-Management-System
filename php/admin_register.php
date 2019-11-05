@@ -83,7 +83,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 			/*Attempt to execute the prepared statement*/
 			if(mysqli_stmt_execute($stmt)){
 				/*Redirect to login page*/
-				header("location: admin_login.php");
+				header("location: ../welcome_front_end/main_welcome.html");
 			}else{
 				echo "Something went wrong.";
 			}

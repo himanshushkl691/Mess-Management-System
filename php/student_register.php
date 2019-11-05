@@ -100,7 +100,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 			/*Attempt to execute the prepared statement*/
 			if(mysqli_stmt_execute($stmt)){
 				/*Redirect to login page*/
-				header("location: student_login.php");
+				header("location: ../welcome_front_end/main_welcome.html");
 			}else{
 				$sql = "SELECT mess_name FROM MESS_ADMIN WHERE mess_name = ?";
 				if($stmt = mysqli_prepare($link,$sql)){
