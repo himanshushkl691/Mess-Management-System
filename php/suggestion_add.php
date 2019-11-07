@@ -31,7 +31,7 @@
 				break;
 			}
 
-			$insert_suggestion = "INSERT INTO FEEDBACK VALUES (?,?,?)";
+			$insert_suggestion = "INSERT INTO FEEDBACK(`roll_no`,`suggestion`,`mess_name`) VALUES (?,?,?)";
     
     		$stmt = "";
     		if($stmt = mysqli_prepare($link,$insert_suggestion))
