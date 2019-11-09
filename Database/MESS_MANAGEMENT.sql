@@ -3,11 +3,12 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 05, 2019 at 08:26 PM
+-- Generation Time: Nov 07, 2019 at 06:40 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
-create database MESS_MANAGEMENT;
-use MESS_MANAGEMENT;
+
+CREATE DATABASE MESS_MANAGEMENT;
+USE MESS_MANAGEMENT;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,10 +45,6 @@ CREATE TABLE `EXTRAS` (
 --
 -- Dumping data for table `EXTRAS`
 --
-
-INSERT INTO `EXTRAS` (`id`, `roll_no`, `mess_name`, `item_name`, `item_price`, `item_qty`, `total`, `time_stamp`) VALUES
-(5, 'B170499cs', 'D', 's', 10, 3, 30, '2019-11-03 00:14:04');
-
 -- --------------------------------------------------------
 
 --
@@ -65,12 +62,6 @@ CREATE TABLE `FEEDBACK` (
 -- Dumping data for table `FEEDBACK`
 --
 
-INSERT INTO `FEEDBACK` (`roll_no`, `suggestion`, `mess_name`, `time_stamp`) VALUES
-('B170936cs', 'tatti hai khana', 'G', '2019-11-03 01:19:24'),
-('B170703cs', 'daal k naam pe pani deta h', 'D', '2019-11-03 01:20:45');
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `MESS_ADMIN`
 --
@@ -84,23 +75,7 @@ CREATE TABLE `MESS_ADMIN` (
 --
 -- Dumping data for table `MESS_ADMIN`
 --
-
-INSERT INTO `MESS_ADMIN` (`mess_name`, `pass`, `base`) VALUES
-('A', '123456', 50),
-('B', '123456', 50),
-('C', '123456', 50),
-('D', '123456', 50),
-('E', '123456', 50),
-('F', '123456', 50),
-('G', '123456', 50),
-('IH', '123456', 50),
-('LH', '123456', 50),
-('MBA', '123456', 50),
-('Mega', '123456', 50),
-('MLH', '123456', 50);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `STUDENT`
 --
@@ -118,12 +93,6 @@ CREATE TABLE `STUDENT` (
 --
 -- Dumping data for table `STUDENT`
 --
-
-INSERT INTO `STUDENT` (`roll_no`, `name`, `pass`, `hostel`, `room_no`, `time_stamp`, `mess_name`) VALUES
-('B170499cs', 'bhand', '12345678', 'C', '121', '2019-11-03 00:14:04', 'D'),
-('B170703cs', 'shrey', '12345678', 'C', '148', '2019-11-03 00:14:04', 'D'),
-('B170936cs', 'sachin', '12345678', 'C', '235', '2019-11-03 00:14:04', 'G');
-
 --
 -- Indexes for dumped tables
 --
@@ -164,7 +133,7 @@ ALTER TABLE `STUDENT`
 -- AUTO_INCREMENT for table `EXTRAS`
 --
 ALTER TABLE `EXTRAS`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- Constraints for dumped tables
@@ -174,21 +143,21 @@ ALTER TABLE `EXTRAS`
 -- Constraints for table `EXTRAS`
 --
 ALTER TABLE `EXTRAS`
-  ADD CONSTRAINT `EXTRAS_ibfk_1` FOREIGN KEY (`roll_no`) REFERENCES `STUDENT` (`roll_no`),
-  ADD CONSTRAINT `EXTRAS_ibfk_2` FOREIGN KEY (`mess_name`) REFERENCES `MESS_ADMIN` (`mess_name`);
+  ADD CONSTRAINT `EXTRAS_ibfk_1` FOREIGN KEY (`roll_no`) REFERENCES `STUDENT` (`roll_no`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `EXTRAS_ibfk_2` FOREIGN KEY (`mess_name`) REFERENCES `MESS_ADMIN` (`mess_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `FEEDBACK`
 --
 ALTER TABLE `FEEDBACK`
-  ADD CONSTRAINT `FEEDBACK_ibfk_1` FOREIGN KEY (`roll_no`) REFERENCES `STUDENT` (`roll_no`),
-  ADD CONSTRAINT `FEEDBACK_ibfk_2` FOREIGN KEY (`mess_name`) REFERENCES `MESS_ADMIN` (`mess_name`);
+  ADD CONSTRAINT `FEEDBACK_ibfk_1` FOREIGN KEY (`roll_no`) REFERENCES `STUDENT` (`roll_no`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FEEDBACK_ibfk_2` FOREIGN KEY (`mess_name`) REFERENCES `MESS_ADMIN` (`mess_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `STUDENT`
 --
 ALTER TABLE `STUDENT`
-  ADD CONSTRAINT `STUDENT_ibfk_1` FOREIGN KEY (`mess_name`) REFERENCES `MESS_ADMIN` (`mess_name`);
+  ADD CONSTRAINT `STUDENT_ibfk_1` FOREIGN KEY (`mess_name`) REFERENCES `MESS_ADMIN` (`mess_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
