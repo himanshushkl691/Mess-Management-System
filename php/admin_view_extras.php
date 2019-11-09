@@ -87,6 +87,9 @@ if(!empty($temp)){
             	<td>Entry number</td>
             	<td>Roll no</td>
                 <td>mess</td>
+                <td>Item</td>
+                <td>Item Price</td>
+                <td>Item Quantity</td>
                 <td>total</td>
             </tr>
         </thead>
@@ -103,8 +106,11 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     	?>
        	<tr>
        						<td><?php echo $id?></td>
-                			<td><?php echo $roll_no?></td>
-                    		<td><?php echo $mess_name?></td>
+					<td><?php echo $roll_no?></td>
+				<td><?php echo $mess_name?></td>
+				<td><?php echo $item_name?></td>
+				<td><?php echo $item_price?></td>
+				<td><?php echo $item_qty?></td>
                     		<td><?php echo $total?></td>
                 		</tr>
     	<?php
