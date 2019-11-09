@@ -24,9 +24,9 @@
         <table>
         <thead>
             <tr>
-            	<td>roll_no</td>
-                <td>name</td>
-                <td>hostel</td>
+            	<td>Roll_no</td>
+                <td>Name</td>
+                <td>Hostel</td>
             </tr>
         </thead>
         <tbody>
@@ -34,17 +34,16 @@
         	session_start();
 			require_once "config.php";
 			//echo $_SESSION["roll_no"];
-			$roll_no = $name = $hostel = "";
+			$roll_no = $name = $hostel = $messname = "";
 			$sql = "SELECT roll_no,name,hostel FROM STUDENT WHERE mess_name = ?";
 			if($stmt = mysqli_prepare($link,$sql))
-			{	
+			{
 				mysqli_stmt_bind_param($stmt,"s",$messname);
 				$messname = $_SESSION["mess_name"];
 				mysqli_stmt_execute($stmt);
 				mysqli_stmt_bind_result($stmt,$roll_no,$name,$hostel);
 				while(mysqli_stmt_fetch($stmt))
 				{
-					//printf("%s %s %s \n",$roll_no,$name,$hostel);
 					?>
                 		<tr>
                 			<td><?php echo $roll_no?></td>
@@ -53,12 +52,12 @@
                 		</tr>
             		<?php
 				}
-				mysqli_stmt_close($stmt);
 			}
+				mysqli_stmt_close($stmt);
             ?>
-            </tbody>
+	    </tbody>
             </table>
             <br/>
-            <input type="bustton" class="btn btn-danger" onclick="window.location='student_logout.php'" class="Redirect" value="Logout"/>
+            <input type="button" class="btn btn-danger" onclick="window.location='student_logout.php'" class="Redirect" value="Logout"/>
     </body>
 </html>
