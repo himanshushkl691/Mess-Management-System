@@ -28,7 +28,9 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 					$roll_no = trim($_POST["roll_no"]);
 				}
 			}else{
-				echo "Something went wrong.Please try again later.";
+				$message = "Something went wrong.Please try again later.";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+				//echo "Something went wrong.Please try again later.";
 			}
 		}
 		/*Close statement*/
@@ -114,7 +116,9 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 							$mess_name_err = "Mess does not exist.";
 						}
 					}else{
-						echo "Something went wrong.Try again later.";
+						$message = "Something went wrong.Try again later.";
+						echo "<script type='text/javascript'>alert('$message');</script>";
+						//echo "Something went wrong.Try again later.";
 					}
 				}
 			}

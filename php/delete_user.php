@@ -37,10 +37,14 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 				mysqli_stmt_bind_param($stmt,"s",$param1_roll_no);
 				$param1_roll_no = $roll_no;
 				if(mysqli_stmt_execute($stmt)){
-					echo "Successful deletion";
+					$message = "Successful deletion";
+					echo "<script type='text/javascript'>alert('$message');</script>";
+					//echo "Successful deletion";
 				}
 				else{
-					echo "something went wrong";
+					$message = "something went wrong";
+					echo "<script type='text/javascript'>alert('$message');</script>";
+					//echo "something went wrong";
 				}
 			}
 		}

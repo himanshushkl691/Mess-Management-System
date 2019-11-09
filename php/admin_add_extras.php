@@ -62,9 +62,13 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 				$param_total = $item_price*$item_qty;
 				if(mysqli_stmt_execute($stmt)){
 				/*Redirect to login page*/
-					echo "Success";
+					$message = "Extras added successfully";
+					echo "<script type='text/javascript'>alert('$message');</script>";
+					//echo "Success";
 				}else{
-				echo "Some error occured";
+				$message = "Some error occured";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+				//echo "Some error occured";
 			}
 			}
 		}

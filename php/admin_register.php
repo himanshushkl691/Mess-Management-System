@@ -34,7 +34,8 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 					$mess_name = $temp;
 				}
 			}else{
-				alert("Something went wrong.Please try again later.");
+				$message = "Something went wrong.Please try again later.";
+				echo "<script type='text/javascript'>alert('$message');</script>";
 			}
 		}
 		/*Close statement*/
@@ -85,7 +86,8 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 				/*Redirect to login page*/
 				header("location: ../welcome_front_end/main_welcome.html");
 			}else{
-				echo "Something went wrong.";
+				$message = "Something went wrong.";
+				echo "<script type='text/javascript'>alert('$message');</script>";
 			}
 		}
 		/*Close statement*/
