@@ -45,10 +45,6 @@ CREATE TABLE `EXTRAS` (
 --
 -- Dumping data for table `EXTRAS`
 --
-
-INSERT INTO `EXTRAS` (`id`, `roll_no`, `mess_name`, `item_name`, `item_price`, `item_qty`, `total`, `time_stamp`) VALUES
-(5, 'B170499cs', 'D', 's', 10, 3, 30, '2019-11-03 00:14:04');
-
 -- --------------------------------------------------------
 
 --
@@ -66,11 +62,6 @@ CREATE TABLE `FEEDBACK` (
 -- Dumping data for table `FEEDBACK`
 --
 
-INSERT INTO `FEEDBACK` (`roll_no`, `suggestion`, `mess_name`, `time_stamp`) VALUES
-('B170703cs', 'daal k naam pe pani deta h', 'D', '2019-11-03 01:20:45');
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `MESS_ADMIN`
 --
@@ -84,23 +75,7 @@ CREATE TABLE `MESS_ADMIN` (
 --
 -- Dumping data for table `MESS_ADMIN`
 --
-
-INSERT INTO `MESS_ADMIN` (`mess_name`, `pass`, `base`) VALUES
-('A', '123456', 50),
-('B', '123456', 50),
-('C', '123456', 50),
-('D', '123456', 50),
-('E', '123456', 50),
-('F', '123456', 50),
-('G', '123456', 50),
-('IH', '123456', 50),
-('LH', '123456', 50),
-('MBA', '123456', 50),
-('Mega', '123456', 50),
-('MLH', '123456', 50);
-
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `STUDENT`
 --
@@ -118,11 +93,6 @@ CREATE TABLE `STUDENT` (
 --
 -- Dumping data for table `STUDENT`
 --
-
-INSERT INTO `STUDENT` (`roll_no`, `name`, `pass`, `hostel`, `room_no`, `time_stamp`, `mess_name`) VALUES
-('B170499cs', 'bhand', '12345678', 'C', '121', '2019-11-03 00:14:04', 'D'),
-('B170703cs', 'shrey', '12345678', 'C', '148', '2019-11-03 00:14:04', 'D');
-
 --
 -- Indexes for dumped tables
 --
