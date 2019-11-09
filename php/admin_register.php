@@ -34,7 +34,7 @@ if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 					$mess_name = $temp;
 				}
 			}else{
-				echo "Something went wrong.Please try again later.";
+				alert("Something went wrong.Please try again later.");
 			}
 		}
 		/*Close statement*/
