@@ -30,7 +30,11 @@ if(!empty($temp)){
         $param_mess_name = $_SESSION["mess_name"];
         mysqli_stmt_execute($stmt);
         if(empty($ID_err)){
-          echo "Entry number: ".$ID."\nEntry Deleted";
+          $message = "Entry number: ".$ID."\nEntry Deleted";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+          //echo "<script>setTimeout(\"location.href = 'admin_view_extras.php';\",15);</script>";
+        
+          //echo "Entry number: ".$ID."\nEntry Deleted";
         }
         else{
           echo "Some problem occured";

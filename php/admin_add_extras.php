@@ -64,10 +64,13 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 				/*Redirect to login page*/
 					$message = "Extras added successfully";
 					echo "<script type='text/javascript'>alert('$message');</script>";
+					echo "<script>setTimeout(\"location.href = '../welcome_front_end/welcome_admin.html';\",15);</script>";
+
 					//echo "Success";
 				}else{
 				$message = "Some error occured";
 				echo "<script type='text/javascript'>alert('$message');</script>";
+				echo "<script>setTimeout(\"location.href = '../welcome_front_end/welcome_admin.html';\",15);</script>";
 				//echo "Some error occured";
 			}
 			}

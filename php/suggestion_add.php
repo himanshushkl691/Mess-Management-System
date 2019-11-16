@@ -6,15 +6,16 @@
   {
   	if(empty(trim($_POST["suggestion"])))
   	{
-  		$message = "Pls add a suggestion";
+		$message = "Pls add a suggestion";
 		echo "<script type='text/javascript'>alert('$message');</script>";
-    	//echo "Pls add a suggestion";
-  	}
+		echo "<script>setTimeout(\"location.href = 'student_welcome.php';\",15);</script>";
+	}
 
   	else
   	{
   		$message = "Thank you for your suggestion!!";
 		echo "<script type='text/javascript'>alert('$message');</script>";
+		echo "<script>setTimeout(\"location.href = 'student_welcome.php';\",15);</script>";
     	//echo "Thank you for your suggestion!!";
 
     	$rollNo = $rollNo_tmp = $Suggestion = $Suggestion_tmp = $mess_name = $insert_suggestion = $mess_name_tmp = "";
@@ -55,6 +56,8 @@
 			{
 				$message = "insert prepare fail";
 				echo "<script type='text/javascript'>alert('$message');</script>";
+				echo "<script>setTimeout(\"location.href = 'student_welcome.php';\",15);</script>";
+
 				//echo "insert prepare fail";
 				//echo ''.htmlspecialchars(mysqli_error($link));
 			}
@@ -64,6 +67,7 @@
 		{
 			$message = "getmess prepare fail";
 			echo "<script type='text/javascript'>alert('$message');</script>";
+			echo "<script>setTimeout(\"location.href = 'student_welcome.php';\",15);</script>";
 			//echo "getmess prepare fail";
 		}
 

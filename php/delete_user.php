@@ -39,12 +39,15 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 				if(mysqli_stmt_execute($stmt)){
 					$message = "Successful deletion";
 					echo "<script type='text/javascript'>alert('$message');</script>";
+					echo "<script>setTimeout(\"location.href = '../welcome_front_end/welcome_admin.html';\",15);</script>";
+
 					//echo "Successful deletion";
 				}
 				else{
 					$message = "something went wrong";
 					echo "<script type='text/javascript'>alert('$message');</script>";
-					//echo "something went wrong";
+					echo "<script>setTimeout(\"location.href = '../welcome_front_end/welcome_admin.html';\",15);</script>";
+
 				}
 			}
 		}
