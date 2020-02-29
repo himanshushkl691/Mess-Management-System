@@ -1,0 +1,3 @@
+We are making an efficient mess managament system in NIT-C in order to maintain transparency in the monthly bill of the base price of a particular mess and the extra items purchased by a student.
+This is being done in order to avoid the difficulty caused to the students in keeping track of the extra items purchased daily.
+Our motivation to choose this project was that many of us can't keep track of our expenses due to flaws in our current mess management system. If there was way to keep track of our daily expenses we can manage our money more efficiently, and thus we thought of building this mess management system and also give suggestions and feedbacks to the mess contractors for the same through this system.
